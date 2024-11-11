@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Yosi Susanti</title>
+  <style>
+    /* General Styling */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff7b7b, #ffb3c1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Card Styling */
+    .card {
+      width: 350px;
+      padding: 30px;
+      background: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Title Styling */
+    .card h1 {
+      font-size: 2.5em;
+      margin: 0;
+      color: #ff4081;
+      font-weight: bold;
+      animation: title-bounce 0.5s ease-in-out;
+    }
+
+    .card h2 {
+      font-size: 1.3em;
+      color: #4caf50;
+      margin: 10px 0 20px;
+      font-style: italic;
+    }
+
+    .card p {
+      font-size: 1.1em;
+      color: #333;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    /* Button Styling */
+    .card button {
+      padding: 12px 25px;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .card button:hover {
+      background: #e91e63;
+      transform: scale(1.05);
+    }
+
+    /* Photo Gallery */
+    .gallery {
+      display: none;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 120px;
+      height: 120px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Fade In Effect for Images */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Button for Next Page */
+    .next-button {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .next-button:hover {
+      background: #388e3c;
+      transform: scale(1.05);
+    }
+
+    /* Balloon Styles */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 40px;
+      height: 60px;
+      background-color: #ff4081;
+      border-radius: 50% 50% 60% 60%;
+      animation: floatUp 5s ease-in-out infinite;
+    }
+
+    .balloon:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 2px;
+      height: 10px;
+      background-color: #555;
+      transform: translateX(-50%);
+    }
+
+    /* Balloon Animation */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(30px) rotate(20deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="cardContent">
+    <!-- Greeting Card Content -->
+    <h1>Happy Birthday!</h1>
+    <h2>Dear Yosi Susanti</h2>
+    <p id="birthdayMessage">Selamat Ulang Tahun, Yosi! 🎉🎂 Semoga hari ini penuh dengan kebahagiaan dan kenangan manis. Aku selalu mendoakan yang terbaik untukmu, semoga semua impianmu terwujud di tahun ini! 💖🎈</p>
+    
+    <!-- Celebrate Button (only appears initially) -->
+    <button id="celebrateButton" onclick="celebrate()">Celebrate</button>
+
+    <!-- Photo Gallery Section -->
+    <div class="gallery" id="photoGallery">
+      <img src="asset/g1.png" alt="Yosi 1">
+      <img src="asset/g2.png" alt="Yosi 2">
+      <img src="asset/g3.png" alt="Yosi 3">
+      <img src="asset/g4.png" alt="Yosi 4">
+      <img src="asset/g5.png" alt="Yosi 5">
+    </div>
+    
+    <!-- Next Page Button -->
+    <button class="next-button" id="nextButton" onclick="goToNextPage()">Klik✨</button>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="birthdayMusic" src="asset/lagu.unknown" preload="auto"></audio>
+
+  <script>
+    // Create balloons initially when the page loads
+    createBalloons(30); // Change the number as desired
+
+    function celebrate() {
+
+    // Play sound
+    document.getElementById('birthdayMusic').play();
+
+      // Hide "Celebrate" button
+      document.getElementById('celebrateButton').style.display = 'none';
+
+      // Show gallery and next button, update message
+      document.getElementById('photoGallery').style.display = 'flex';
+      document.getElementById('nextButton').style.display = 'block';
+      document.getElementById('birthdayMessage').innerHTML = "Selamat ulang tahun lagi, Yosi! 🥳🎉 ini aku buat khusus untuk kamu maaf gak bisa memberikan yang lebih baik dan gak begitu banyak Aku harap kamu senang dan bahagia. Cuman mau bilang aku kangen sama kamu pengen balikan perasaan ini sudah terlalu sayang sama kamu🎈💖";
+    }
+
+    function createBalloons(num) {
+      for (let i = 0; i < num; i++) {
+        let balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        balloon.style.left = `${Math.random() * 100}vw`;
+        balloon.style.backgroundColor = getRandomColor();
+        balloon.style.animationDuration = `${Math.random() * 3 + 3}s`;
+        document.body.appendChild(balloon);
+      }
+    }
+
+    function getRandomColor() {
+      const colors = ['#FF4081', '#FFEB3B', '#4CAF50', '#FF9800', '#03A9F4'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function goToNextPage() {
+      // Redirect to another HTML file
+      window.location.href = "Hayuk.html"; // Ganti "yourpage.html" dengan nama halaman HTML yang sudah kamu buat
+    }
+  </script>
+</body>
+</html>
